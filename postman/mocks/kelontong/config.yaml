@@ -1,0 +1,8 @@
+version: 1
+name: kelontong
+description: Local chat-completions contract fixture for CodingFlashcards
+origin: api.kelontongai.id
+interceptRequests: true
+scenarios:
+  - name: default
+    path: default.js

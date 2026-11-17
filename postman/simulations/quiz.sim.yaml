@@ -1,0 +1,8 @@
+simulation: quiz-local
+routing: path
+mocks:
+  - name: kelontong
+    routeKey: kelontong
+    origin:
+      - api.kelontongai.id
+    path: postman/mocks/kelontong/config.yaml

@@ -1,0 +1,52 @@
+purpose:
+  stands_in_for: KelontongAI OpenAI-compatible models and chat completions
+  unblocks: Local validation of the real C# HTTP client without spending provider credits
+assumptions:
+  - id: models-list
+    status: supported
+    claim: The provider returned 43 model IDs including deepseek-v4.1-flash on 2026-11-15.
+    reason: Authenticated read-only request returned HTTP 200; no key was printed.
+    verification: Python verified-TLS GET against the real /v1/models endpoint returned 43 IDs and the selected default.
+    source: https://api.kelontongai.id/v1/models; scripts/catalog.py; src/CodingFlashcards/Api.cs
+    updated_at: '2026-11-15'
+  - id: client-contract-fixture
+    status: supported
+    claim: The original QuizFlashcards C# caller handled the modeled chat response, four HTTP error statuses, invalid JSON, and a delayed response before this adaptation.
+    reason: The actual KelontongClient ran against a local Postman simulation and assertions passed.
+    verification: 233 checks passed, including offscreen UI renders, HTTP generation and 401/404/429/500, two invalid JSON attempts, and timeout; simulation request events confirmed the paths ran. This proves behavior against these fixtures only.
+    source: tests/Program.cs; postman/mocks/kelontong/default.js; postman/simulations/quiz.sim.yaml
+    updated_at: '2026-11-15'
+  - id: live-question-content
+    status: unknown
+    claim: The selected live model reliably emits valid and accurate questions in the application schema.
+    reason: Live generation has not been exercised for CodingFlashcards; fixtures model the inherited envelope and the new locally designed coding question schema. Historical original-project probes do not verify this schema.
+    verification: Public integration docs inspected; provider models probe passed. Published-mock lookup skipped because this CLI has no status command; no cloud workspace was created or modified. Live generation and desktop scheduled-popup validation remain outstanding.
+    source: https://kelontongai.id/docs; src/CodingFlashcards/Api.cs; README.md
+    updated_at: '2026-11-15'
+  - id: coding-client-fixtures
+    status: supported
+    claim: The CodingFlashcards caller accepts the modeled coding schema for eight languages and rejects the invalid responses exercised locally.
+    reason: The real C# HTTP client and SQLite storage ran against the inherited local mock extended for coding fields; these results concern stand-ins only.
+    verification: On 2026-11-15, 87 checks passed including language/category/difficulty mismatches, required-code and options validation, missing key, duplicate/count errors, two malformed-response attempts, fenced JSON, 401/404/429/500 and timeout. Local simulation request events confirmed requests and retries. Live generation and real scheduled popups remain untested.
+    source: tests/Program.cs; postman/mocks/kelontong/default.js; artifacts/simulation.ndjson
+    updated_at: '2026-11-15'
+  - id: language-modes-fixture
+    status: supported
+    claim: The C# caller follows planned language-category pairs for both random modes against the local stand-in.
+    reason: Actual HTTP requests and SQLite state were exercised; this does not establish live provider compliance.
+    verification: On 2026-11-15, 126 checks passed including migration, shuffled rounds across reopened storage, separate mode progress, exact cache matching, 13-question sessions across three batches in each mode, invalid responses, cancellation with plan reuse, and prior HTTP failure cases. Simulation events confirmed mixed-language requests, batch limits and two attempts per invalid generation. UI renders covered 100/125/150 percent.
+    source: tests/Program.cs; src/CodingFlashcards/SessionPlan.cs; postman/mocks/kelontong/default.js; artifacts/simulation-modes.ndjson
+    updated_at: '2026-11-15'
+fingerprints:
+  - id: language-modes
+    date: '2026-11-15'
+    commit: null
+    cli: '1.73.0'
+  - id: coding-adaptation
+    date: '2026-11-15'
+    commit: null
+    cli: '1.73.0'
+  - id: initial-implementation
+    date: '2026-11-15'
+    commit: null
+    cli: '1.73.0'
