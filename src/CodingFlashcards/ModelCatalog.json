@@ -1,0 +1,174 @@
+[
+  {
+    "id": "atria-dawn",
+    "provider": "Atria"
+  },
+  {
+    "id": "claude-fable-5-2",
+    "provider": "Claude"
+  },
+  {
+    "id": "claude-haiku-5.5",
+    "provider": "Claude"
+  },
+  {
+    "id": "claude-opus-4.6",
+    "provider": "Claude"
+  },
+  {
+    "id": "claude-opus-4.8",
+    "provider": "Claude"
+  },
+  {
+    "id": "claude-opus-5",
+    "provider": "Claude"
+  },
+  {
+    "id": "claude-opus-5.5",
+    "provider": "Claude"
+  },
+  {
+    "id": "claude-sonnet-5",
+    "provider": "Claude"
+  },
+  {
+    "id": "claude-sonnet-5.5",
+    "provider": "Claude"
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "provider": "Deepseek"
+  },
+  {
+    "id": "deepseek-v4-flash-0731",
+    "provider": "Deepseek"
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "provider": "Deepseek"
+  },
+  {
+    "id": "deepseek-v4.1-flash",
+    "provider": "Deepseek"
+  },
+  {
+    "id": "deepseek-v4.1-flash-uncen",
+    "provider": "Deepseek"
+  },
+  {
+    "id": "gemini-3.8-flash",
+    "provider": "Gemini"
+  },
+  {
+    "id": "gemini-4-carbon",
+    "provider": "Gemini"
+  },
+  {
+    "id": "glm-5.2",
+    "provider": "GLM"
+  },
+  {
+    "id": "glm-5.3",
+    "provider": "GLM"
+  },
+  {
+    "id": "glm-5.3-flash",
+    "provider": "GLM"
+  },
+  {
+    "id": "glm-5.3-flash-b",
+    "provider": "GLM"
+  },
+  {
+    "id": "gpt-5.6-luna",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-5.6-sol",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-5.6-terra",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-6-astra",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-6-astra-ultrafast",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-6-luna",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-6-sol",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-6.1-sol",
+    "provider": "GPT"
+  },
+  {
+    "id": "gpt-6.1-terra",
+    "provider": "GPT"
+  },
+  {
+    "id": "hy4",
+    "provider": "Hy4"
+  },
+  {
+    "id": "kimi-k2.7-code",
+    "provider": "Kimi"
+  },
+  {
+    "id": "kimi-k2.8",
+    "provider": "Kimi"
+  },
+  {
+    "id": "kimi-k3",
+    "provider": "Kimi"
+  },
+  {
+    "id": "kimi-k3-ultra",
+    "provider": "Kimi"
+  },
+  {
+    "id": "kimi-k3.1-pro",
+    "provider": "Kimi"
+  },
+  {
+    "id": "mimo-v2.6-flash",
+    "provider": "Mimo"
+  },
+  {
+    "id": "mimo-v2.6-pro",
+    "provider": "Mimo"
+  },
+  {
+    "id": "minimax-m3.1-flash",
+    "provider": "MiniMax"
+  },
+  {
+    "id": "muse-spark-1.3",
+    "provider": "Meta"
+  },
+  {
+    "id": "muse-wonder-1.0",
+    "provider": "Meta"
+  },
+  {
+    "id": "qwen3.8-flash",
+    "provider": "Qwen"
+  },
+  {
+    "id": "qwen3.8-max",
+    "provider": "Qwen"
+  },
+  {
+    "id": "step-5-preview",
+    "provider": "Step"
+  }
+]
