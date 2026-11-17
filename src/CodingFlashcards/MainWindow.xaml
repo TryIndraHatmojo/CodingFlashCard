@@ -1,0 +1,47 @@
+<Window Style="{StaticResource {x:Type Window}}" x:Class="CodingFlashcards.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Coding Flashcards" Width="1000" Height="790" MinWidth="760" MinHeight="580" WindowStartupLocation="CenterScreen">
+ <Grid Margin="28">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <StackPanel Margin="0,0,0,22"><TextBlock Text="Coding Flashcards" FontSize="30" FontWeight="Bold" Foreground="#18254B"/><TextBlock Text="Latihan coding singkat, setiap hari. Siapkan interview berikutnya." Foreground="#65708A" Margin="0,5,0,0"/></StackPanel>
+  <TabControl x:Name="Tabs" Grid.Row="1" Padding="20" SelectionChanged="TabChanged">
+   <TabItem Header="Beranda"><StackPanel>
+    <TextBlock Text="Siapkan kemampuan coding untuk interview." FontSize="25" FontWeight="SemiBold" Margin="0,14" TextWrapping="Wrap"/>
+    <TextBlock x:Name="ScheduleStatus" Foreground="#3759D7" Margin="0,10"/>
+    <TextBlock x:Name="Overview" TextWrapping="Wrap" Margin="0,10,0,20"/>
+    <WrapPanel><Button Content="Mulai latihan sekarang →" Click="StartQuiz"/><Button Content="Buka Settings" Click="OpenSettings"/></WrapPanel>
+    <Border Background="White" Padding="20" Margin="0,30,0,0"><TextBlock Text="Latihan pilihan ganda dengan potongan kode dan pembahasan langsung. Latih output kode, debugging, algoritma, struktur data, kompleksitas, OOP, serta SQL. Centang bahasa latihan dan pilih mode acak di Settings.&#x0a;&#x0a;Popup terjadwal tetap dapat muncul ketika panel ini ditutup. Jadwal terlewat saat komputer tidur atau terkunci akan dilewati." TextWrapping="Wrap" LineHeight="24"/></Border>
+   </StackPanel></TabItem>
+   <TabItem Header="Riwayat"><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/><RowDefinition Height="260"/></Grid.RowDefinitions>
+    <TextBlock Text="100 sesi terakhir · pilih sesi untuk melihat pembahasan" Margin="0,0,0,12"/>
+    <ListBox x:Name="HistoryList" Grid.Row="1" DisplayMemberPath="Summary" SelectionChanged="ShowHistory"/>
+    <TextBox x:Name="HistoryDetails" FontFamily="Consolas" HorizontalScrollBarVisibility="Auto" Grid.Row="2" IsReadOnly="True" TextWrapping="NoWrap" VerticalScrollBarVisibility="Auto" Margin="0,14,0,0"/>
+   </Grid></TabItem>
+   <TabItem Header="Settings"><ScrollViewer x:Name="SettingsScroll" VerticalScrollBarVisibility="Auto"><StackPanel Margin="0,0,15,0">
+    <TextBlock Text="Koneksi KelontongAI" FontSize="21" FontWeight="SemiBold" Margin="0,8,0,12"/>
+    <TextBlock Text="API key (terenkripsi untuk akun Windows Anda)"/><PasswordBox x:Name="KeyBox" Padding="10" Margin="0,5,0,6"/>
+    <TextBlock x:Name="KeyStatus" Foreground="#65708A" TextWrapping="Wrap"/>
+    <WrapPanel><Button Content="Impor ulang environment kelontongai" Click="ImportKey"/><Button Content="Tes koneksi" Click="TestConnection"/></WrapPanel>
+    <TextBlock Text="Base URL" Margin="0,14,0,0"/><TextBox x:Name="BaseUrlBox"/>
+    <TextBlock Text="Cari model / provider"/><TextBox x:Name="SearchBox" TextChanged="FilterModels"/>
+    <TextBlock Text="Model (pilih dari daftar atau ketik ID model)"/><ComboBox x:Name="ModelBox" IsEditable="True" DisplayMemberPath="Id" IsTextSearchEnabled="False" MaxDropDownHeight="270"><ComboBox.GroupStyle><GroupStyle><GroupStyle.HeaderTemplate><DataTemplate><TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="#3759D7" Margin="6,8"/></DataTemplate></GroupStyle.HeaderTemplate></GroupStyle></ComboBox.GroupStyle></ComboBox>
+    <WrapPanel><Button Content="Segarkan model dari API" Click="RefreshModels"/><Button Content="Katalog KelontongAI ↗" Click="OpenCatalog"/></WrapPanel>
+    <TextBlock Text="Latihan dan penjadwalan" FontSize="21" FontWeight="SemiBold" Margin="0,24,0,12"/>
+    <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="22"/><ColumnDefinition/></Grid.ColumnDefinitions>
+     <StackPanel><TextBlock Text="Jumlah soal per sesi (1–50)"/><TextBox x:Name="CountBox"/></StackPanel>
+     <StackPanel Grid.Column="2"><TextBlock Text="Interval dalam menit (1–1.440)"/><TextBox x:Name="IntervalBox"/></StackPanel>
+    </Grid>
+    <CheckBox x:Name="ScheduleBox" Content="Aktifkan popup melalui Windows Task Scheduler"/>
+    <TextBlock Text="Setiap hari selama Anda login. Tidak membangunkan komputer." Foreground="#65708A" TextWrapping="Wrap"/>
+    <TextBlock Text="Tingkat kesulitan" Margin="0,14,0,0"/><ComboBox x:Name="DifficultyBox"/>
+    <CheckBox x:Name="TimerBox" Content="Batasi waktu per soal"/><TextBlock Text="Durasi timer dalam detik (5–600)"/><TextBox x:Name="SecondsBox"/>
+    <TextBlock Text="Bahasa latihan" FontSize="21" FontWeight="SemiBold" Margin="0,22,0,8"/><ItemsControl ItemsSource="{Binding Languages}"><ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel><ItemsControl.ItemTemplate><DataTemplate><CheckBox Content="{Binding Label}" IsChecked="{Binding Selected}" MinWidth="160"/></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+    <TextBlock Text="Mode pemilihan bahasa" Margin="0,14,0,0"/><ComboBox x:Name="ModeBox" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+    <TextBlock Text="Acak merata: bahasa berganti per soal dalam putaran acak.&#x0a;Acak satu bahasa per sesi: semua soal satu sesi memakai satu bahasa, lalu berganti pada sesi berikutnya.&#x0a;Semua bahasa tercentang mendapat giliran sebelum putaran diulang. Giliran berlanjut antarsesi." TextWrapping="Wrap" Foreground="#65708A"/>
+    <TextBlock Text="Tipe soal" FontSize="21" FontWeight="SemiBold" Margin="0,22,0,8"/>
+    <ItemsControl ItemsSource="{Binding Categories}"><ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel><ItemsControl.ItemTemplate><DataTemplate><CheckBox Content="{Binding Label}" IsChecked="{Binding Selected}" MinWidth="215"/></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+    <TextBlock Text="Tipe soal dirotasi untuk setiap bahasa tercentang. Soal dan pembahasan dibuat AI; kode tidak dijalankan." Foreground="#65708A" TextWrapping="Wrap" Margin="0,8,0,12"/>
+    <Button Content="Simpan pengaturan" HorizontalAlignment="Left" Click="SaveSettings" Margin="0,12"/>
+   </StackPanel></ScrollViewer></TabItem>
+  </TabControl>
+  <TextBlock Grid.Row="2" x:Name="Message" TextWrapping="Wrap" Foreground="#3759D7" Margin="0,16,0,0"/>
+ </Grid>
+</Window>
